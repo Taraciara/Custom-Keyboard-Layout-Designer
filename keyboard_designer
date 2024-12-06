@@ -1,0 +1,21 @@
+# keyboard_designer.py
+
+import tkinter as tk
+
+def save_layout(key_map):
+    with open("layout.json", "w") as file:
+        json.dump(key_map, file)
+
+def key_click(event):
+    key_map[event.char] = event.char.upper()
+    save_layout(key_map)
+
+app = tk.Tk()
+key_map = {}
+
+frame = tk.Frame(app, width=500, height=300)
+frame.bind("<Key>", key_click)
+frame.pack()
+frame.focus_set()
+
+app.mainloop()
